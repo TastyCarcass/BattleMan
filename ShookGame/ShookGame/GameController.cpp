@@ -2,6 +2,7 @@
 
 GameScene* GameController::currentScene;
 Graphics* GameController::graphics;
+HPTimer* GameController::hpTimer;
 
 void GameController::Init(HWND windowHandle)
 {
@@ -25,5 +26,6 @@ void GameController::Render() {
 }
 
 void GameController::Update() {
-	currentScene->Update();
+	hpTimer->Update();
+	currentScene->Update(hpTimer->GetTimeDelta(), hpTimer->GetTimeTotal());
 }

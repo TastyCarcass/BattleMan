@@ -16,6 +16,6 @@ void TestScene::Render(Graphics* graphics) {
 	graphics->EndDraw();
 };
 
-void TestScene::Update()
+void TestScene::Update(double delta, double timeTotal)
 {
 };

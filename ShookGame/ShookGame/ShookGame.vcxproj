@@ -127,6 +127,7 @@
     <ClInclude Include="GameController.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="HPTimer.h" />
     <ClInclude Include="TestScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -8,5 +8,5 @@ public:
 	void Load();
 	void Unload();
 	void Render(Graphics* graphics);
-	void Update();
+	void Update(double delta, double timeTotal);
 };
