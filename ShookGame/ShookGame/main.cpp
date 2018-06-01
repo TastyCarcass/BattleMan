@@ -1,7 +1,5 @@
 #include <Windows.h>
-#include "Graphics.h"
-
-Graphics* graphics;
+#include "GameController.h"
 
 LRESULT CALLBACK WindowProc(
 	HWND hwnd,
@@ -14,15 +12,6 @@ LRESULT CALLBACK WindowProc(
 	{
 		PostQuitMessage(0); 
 		return 0;
-	}
-
-	if (uMsg == WM_PAINT) 
-	{
-		graphics->BeginDraw();
-		graphics->ClearScreen(0.0f, 0.0f, 0.5f);
-		graphics->DrawCircle(100, 100, 50, 1.0f, 0.0, 0.0, 1.0);
-		graphics->DrawFillRect(300, 400, 200, 200, 0.0, 1.0, 0.0, 1.0);
-		graphics->EndDraw();
 	}
 
 	return DefWindowProc(hwnd, uMsg, wParam, lParam);
@@ -51,21 +40,21 @@ int WINAPI wWinMain(
 
 	if (!windowHandle) return -1;
 
-	graphics = new Graphics();
-	if (!graphics->Init(windowHandle))
-	{
-		delete graphics;
-		return -1;
-	}
-
-
 	ShowWindow(windowHandle, nCmdShow);
 
+	GameController::Init(windowHandle);
+
 	MSG message;
-	while (GetMessage(&message, NULL, 0, 0)) 
-	{
-		DispatchMessage(&message);
-	}
+	message.message = WM_NULL;
+	while (message.message != WM_QUIT) {
+		if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE)) {
+			DispatchMessage(&message);
+		}
+		else {
+			// update
+			GameController::Render();
+		}
+	};
 
 	return 0;
 };
