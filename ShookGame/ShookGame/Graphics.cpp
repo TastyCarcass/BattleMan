@@ -1,5 +1,7 @@
 #include "Graphics.h"
 
+Graphics* Graphics::instance = 0;
+
 Graphics::Graphics()
 {
 	factory = NULL;
@@ -7,11 +9,12 @@ Graphics::Graphics()
 	brush = NULL;
 }
 
-Graphics::~Graphics()
-{
-	if (factory) factory->Release();
-	if (renderTarget) renderTarget->Release();
-	if (brush) brush->Release();
+Graphics* Graphics::getInstance() {
+	if (instance == 0) {
+		instance = new Graphics();
+	}
+
+	return instance;
 }
 
 bool Graphics::Init(HWND windowHandle)

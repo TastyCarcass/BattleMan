@@ -4,12 +4,13 @@
 
 class Graphics
 {
+	static Graphics *instance;
+	Graphics();
 	ID2D1Factory* factory;
 	ID2D1HwndRenderTarget* renderTarget;
 	ID2D1SolidColorBrush* brush;
 public: 
-	Graphics();
-	~Graphics();
+	static Graphics* getInstance();
 
 	bool Init(HWND windowHandle);
 

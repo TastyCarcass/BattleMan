@@ -5,7 +5,7 @@ Graphics* GameController::graphics;
 
 void GameController::Init(HWND windowHandle)
 {
-	graphics = new Graphics();
+	graphics = Graphics::getInstance();
 	graphics->Init(windowHandle);
 
 	currentScene = new TestScene();
